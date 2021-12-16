@@ -1,6 +1,6 @@
 {
   "name": "@aomi/react-slate",
-  "version": "1.0.0-Alpha.2",
+  "version": "1.0.0-Alpha.3",
   "main": "index.js",
   "repository": "git@github.com:aomi-web/react-slate.git",
   "author": "Sean <sean.snow@live.com>",
