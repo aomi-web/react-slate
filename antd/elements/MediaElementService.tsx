@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import { MediaEditor, MediaNode } from '../../plugins/image/MediaEditor';
-import { Image, ImageProps } from 'antd';
+import { Button, Image, ImageProps } from 'antd';
 import { ElementService } from '../../elements/ElementService';
+import { ReactEditor, useFocused, useSelected } from 'slate-react';
+import { Path, Transforms } from 'slate';
 
 export type MediaImageProps = {
   editor: MediaEditor
+  path: Path
+  selected: boolean
+  focused: boolean
 } & ImageProps
 
-export function MediaImage({ editor, ...props }: MediaImageProps) {
+export function MediaImage({ path, selected, focused, editor, ...props }: MediaImageProps) {
   const [visible, setVisible] = useState(false);
   return (
-    <>
-      <Image preview={false} {...props}/>
+    <div style={{ position: 'relative' }} contentEditable={false}>
+      <Image preview={false} style={{
+        boxShadow: selected && focused ? '0 0 0 3px #B4D5FF' : undefined
+      }} {...props}/>
       <div style={{ display: 'none' }}>
         <Image.PreviewGroup preview={{ visible, onVisibleChange: vis => setVisible(vis) }}>
           {editor.images?.map((item, index) => (
@@ -19,7 +26,11 @@ export function MediaImage({ editor, ...props }: MediaImageProps) {
           ))}
         </Image.PreviewGroup>
       </div>
-    </>
+      <Button style={{ position: 'absolute', display: selected && focused ? 'inline' : 'none', top: '0.5em', left: '0.5em' }}
+              icon={<i className="iconfont icon-shanchu"/>}
+              onClick={() => Transforms.removeNodes(editor, { at: path })}
+      />
+    </div>
   );
 }
 
@@ -35,13 +46,18 @@ export class MediaElementService implements ElementService {
 
   render({ attributes, children, element }, editor: MediaEditor) {
     const e = element as MediaNode;
+
+    const path = ReactEditor.findPath(editor as any, element);
+    const selected = useSelected();
+    const focused = useFocused();
+
     switch (e.mediaType) {
       case 'image':
         // fontSize 解决图片直接的间距
         return (
           <div {...attributes} style={{ fontSize: 0 }}>
             {children}
-            <MediaImage editor={editor} src={element.source} contentEditable={false}/>
+            <MediaImage path={path} selected={selected} focused={focused} editor={editor} src={element.source}/>
           </div>
         );
       case 'video':
