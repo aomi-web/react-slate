@@ -11,7 +11,7 @@ export function MediaImage({ editor, ...props }: MediaImageProps) {
   const [visible, setVisible] = useState(false);
   return (
     <>
-      <Image {...props}/>
+      <Image preview={false} {...props}/>
       <div style={{ display: 'none' }}>
         <Image.PreviewGroup preview={{ visible, onVisibleChange: vis => setVisible(vis) }}>
           {editor.images?.map((item, index) => (

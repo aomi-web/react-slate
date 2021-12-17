@@ -13,8 +13,8 @@ export type BuiltInToolType =
   | 'letter-spacing'
   | 'line-height'
   | 'link'
-  | 'list-ol'
-  | 'list-ul'
+  | 'numbered-list'
+  | 'bulleted-list'
   | 'media'
   | 'redo'
   | 'remove-styles'
@@ -29,3 +29,4 @@ export type BuiltInToolType =
   | 'undo'
   | 'table'
 
+export const LIST_TYPES = ['numbered-list', 'bulleted-list']

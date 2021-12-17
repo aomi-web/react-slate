@@ -2,14 +2,15 @@ import { ReactNode } from 'react';
 import { MarkButton } from './MarkButton';
 import { Divider } from './Divider';
 import { BuiltInToolType } from '../../toolBar/builtInTools';
+import { BlockButton } from './BlockButton';
 
 export const builtInTools: Record<BuiltInToolType, ReactNode> = {
   'font-family': undefined,
   'font-size': undefined,
   'letter-spacing': undefined,
   'line-height': undefined,
-  'list-ol': undefined,
-  'list-ul': undefined,
+  'numbered-list': BlockButton,
+  'bulleted-list': BlockButton,
   'remove-styles': undefined,
   'strike-through': undefined,
   'text-align': undefined,
@@ -21,7 +22,7 @@ export const builtInTools: Record<BuiltInToolType, ReactNode> = {
   code: MarkButton,
   italic: MarkButton,
 
-  blockquote: MarkButton,
+  blockquote: BlockButton,
 
   clear: undefined,
   emoji: undefined,
