@@ -6,14 +6,14 @@ import { ElementService } from './ElementService';
 /**
  * heading-one
  */
-export class HeadingOneElementService implements ElementService {
+export class HeadingTwoElementService implements ElementService {
 
   support({ element }): boolean {
-    return element.type === 'heading-one';
+    return element.type === 'heading-two';
   }
 
   render({ attributes, children }: RenderElementProps, editor): JSX.Element {
-    return <h1 {...attributes}>{children}</h1>;
+    return <h2 {...attributes}>{children}</h2>;
   }
 
 }

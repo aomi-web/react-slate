@@ -4,16 +4,16 @@ import { ElementService } from './ElementService';
 
 
 /**
- * block-quote
+ * heading-one
  */
-export class BlockQuoteElementService implements ElementService {
+export class HeadingOneElementService implements ElementService {
 
   support({ element }): boolean {
-    return element.type === 'block-quote';
+    return element.type === 'heading-one';
   }
 
   render({ attributes, children }: RenderElementProps, editor): JSX.Element {
-    return <blockquote {...attributes}>{children}</blockquote>;
+    return <h1 {...attributes}>{children}</h1>;
   }
 
 }

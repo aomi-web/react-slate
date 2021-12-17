@@ -1,6 +1,6 @@
 import React from 'react';
-import { ElementService } from '../../index';
 import { RenderElementProps } from 'slate-react/dist/components/editable';
+import { ElementService } from './ElementService';
 
 
 /**
@@ -13,7 +13,7 @@ export class BlockQuoteElementService implements ElementService {
   }
 
   render({ attributes, children }: RenderElementProps, editor): JSX.Element {
-    return <li {...attributes}>{children}</li>;
+    return <blockquote {...attributes}>{children}</blockquote>;
   }
 
 }

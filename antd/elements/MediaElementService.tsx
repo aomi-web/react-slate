@@ -1,7 +1,27 @@
-import React from 'react';
-import { ElementService } from '../index';
-import { MediaEditor, MediaNode } from '../plugins/image/MediaEditor';
-import { MediaImage } from './MediaImage';
+import React, { useState } from 'react';
+import { MediaEditor, MediaNode } from '../../plugins/image/MediaEditor';
+import { Image, ImageProps } from 'antd';
+import { ElementService } from '../../elements/ElementService';
+
+export type MediaImageProps = {
+  editor: MediaEditor
+} & ImageProps
+
+export function MediaImage({ editor, ...props }: MediaImageProps) {
+  const [visible, setVisible] = useState(false);
+  return (
+    <>
+      <Image {...props}/>
+      <div style={{ display: 'none' }}>
+        <Image.PreviewGroup preview={{ visible, onVisibleChange: vis => setVisible(vis) }}>
+          {editor.images?.map((item, index) => (
+            <Image src={item as string} key={index}/>
+          ))}
+        </Image.PreviewGroup>
+      </div>
+    </>
+  );
+}
 
 
 /**

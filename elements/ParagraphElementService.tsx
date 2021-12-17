@@ -1,7 +1,6 @@
 import React from 'react';
-import { ElementService } from '../../index';
 import { RenderElementProps } from 'slate-react/dist/components/editable';
-import { Typography } from 'antd';
+import { ElementService } from './ElementService';
 
 
 /**
@@ -14,13 +13,7 @@ export class ParagraphElementService implements ElementService {
   }
 
   render({ attributes, children }: RenderElementProps): JSX.Element {
-    return (
-      <span {...attributes}>
-        <Typography.Paragraph>
-          {children}
-        </Typography.Paragraph>
-      </span>
-    );
+    return <p {...attributes}>{children}</p>;
   }
 
 }

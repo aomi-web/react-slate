@@ -4,16 +4,16 @@ import { ElementService } from './ElementService';
 
 
 /**
- * block-quote
+ * numbered-list
  */
-export class BlockQuoteElementService implements ElementService {
+export class NumberedListElementService implements ElementService {
 
   support({ element }): boolean {
-    return element.type === 'block-quote';
+    return element.type === 'numbered-list';
   }
 
   render({ attributes, children }: RenderElementProps, editor): JSX.Element {
-    return <blockquote {...attributes}>{children}</blockquote>;
+    return <ol {...attributes}>{children}</ol>;
   }
 
 }

@@ -1,6 +1,6 @@
 import React from 'react';
-import { ElementService } from '../../index';
 import { RenderElementProps } from 'slate-react/dist/components/editable';
+import { ElementService } from './ElementService';
 
 
 /**
