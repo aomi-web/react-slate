@@ -51,6 +51,8 @@ export const isImageUrl = url => {
 export function getMediaType(media): MediaType | undefined {
   if (isImageUrl(media)) {
     return 'image';
+  } else if (typeof media === 'string' && (media as string).startsWith('data:image')) {
+    return 'image';
   }
   return undefined;
 }
