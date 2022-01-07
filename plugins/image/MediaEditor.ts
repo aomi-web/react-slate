@@ -1,6 +1,5 @@
 import { BaseEditor, Node } from 'slate';
 import imageExtensions from 'image-extensions/image-extensions.json';
-import isUrl from 'is-url';
 import { Element } from 'slate/dist/interfaces/element';
 
 
@@ -41,11 +40,13 @@ export const isImageUrl = url => {
   if (!url) {
     return false;
   }
-  if (!isUrl(url)) {
+  try {
+    const ext = new URL(url).pathname.split('.').pop();
+    return imageExtensions.includes(ext);
+  } catch (e) {
+    console.warn(`解析URL失败: ${url}`);
     return false;
   }
-  const ext = new URL(url).pathname.split('.').pop();
-  return imageExtensions.includes(ext);
 };
 
 export function getMediaType(media): MediaType | undefined {
