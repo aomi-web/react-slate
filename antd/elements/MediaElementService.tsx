@@ -55,16 +55,19 @@ export class MediaElementService implements ElementService {
       case 'image':
         // fontSize 解决图片直接的间距
         return (
-          <div {...attributes} style={{ fontSize: 0 }}>
-            {children}
+          <div style={{ fontSize: 0 }}>
             <MediaImage path={path} selected={selected} focused={focused} editor={editor} src={element.source}/>
+            <span {...attributes}>{children}</span>
           </div>
         );
       case 'video':
         break;
     }
     return (
-      <span {...attributes}>{`不支持渲染当前媒体类型: ${e.mediaType}; ${e.source}`}</span>
+      <span {...attributes}>
+        {`不支持渲染当前媒体类型: ${e.mediaType}; ${e.source}`}
+        {children}
+      </span>
     );
   }
 
