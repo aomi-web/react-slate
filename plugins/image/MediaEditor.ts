@@ -41,7 +41,7 @@ export const isImageUrl = url => {
     return false;
   }
   try {
-    const ext = new URL(url).pathname.split('.').pop();
+    const ext = new URL(url).pathname.split('.').pop()?.toLocaleLowerCase();
     return imageExtensions.includes(ext);
   } catch (e) {
     console.warn(`解析URL失败: ${url}`);
