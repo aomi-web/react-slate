@@ -26,7 +26,7 @@ export function MediaImage({ path, selected, focused, editor, ...props }: MediaI
           ))}
         </Image.PreviewGroup>
       </div>
-      <Button style={{ position: 'absolute', display: selected && focused ? 'inline' : 'none', top: '0.5em', left: '0.5em' }}
+      <Button style={{ position: 'absolute', display: selected && focused ? 'inline' : 'none', top: '0.5em', left: '0.5em', zIndex: 999999 }}
               icon={<i className="iconfont icon-shanchu"/>}
               onClick={() => Transforms.removeNodes(editor, { at: path })}
       />
@@ -55,9 +55,9 @@ export class MediaElementService implements ElementService {
       case 'image':
         // fontSize 解决图片直接的间距
         return (
-          <div style={{ fontSize: 0 }}>
+          <div style={{ fontSize: 0 }} {...attributes}>
             <MediaImage path={path} selected={selected} focused={focused} editor={editor} src={element.source}/>
-            <span {...attributes}>{children}</span>
+            {children}
           </div>
         );
       case 'video':
